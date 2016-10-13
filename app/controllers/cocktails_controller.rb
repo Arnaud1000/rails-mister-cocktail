@@ -10,6 +10,7 @@ class CocktailsController < ApplicationController
   # GET /cocktails/1
   # GET /cocktails/1.json
   def show
+    @dose = Dose.new
   end
 
   # GET /cocktails/new
@@ -28,7 +29,7 @@ class CocktailsController < ApplicationController
 
     respond_to do |format|
       if @cocktail.save
-        format.html { redirect_to @cocktail, notice: 'Cocktail was successfully created.' }
+        format.html { redirect_to cocktails_path(@cocktail), notice: 'Cocktail was successfully created.' }
         format.json { render :show, status: :created, location: @cocktail }
       else
         format.html { render :new }
