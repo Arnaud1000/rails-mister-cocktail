@@ -1,21 +1,28 @@
 <p id="notice"><%= notice %></p>
 
 <div class="text-center">
-<h1><%= @cocktail.name %></h1>
-
-<ul class="list-unstyled">
+<div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
+  <div class="card-category">Cocktails</div>
+  <div class="card-description">
+    <h2><%= @cocktail.name %></h2>
+    <ul class="list-unstyled">
 <% @cocktail.doses.each do |dose| %>
 <li>
 <%= dose.description %> <%= dose.ingredient.name %>
 </li>
 <% end %>
 </ul>
+  </div>
+</div>
+
+
 <%= simple_form_for [@cocktail, @dose] do |f| %>
 
     <%= f.input :description %>
     <%= f.input :ingredient_id, collection: Ingredient.all, prompt: "Choose an ingredient" %>
     <%= f.button :submit %>
 <% end %>
-<% link_to 'Back', cocktails_path %>
+<%= link_to 'Back', cocktails_path %>
+<%= link_to "Ingredients",   ingredients_path%>
 </div>
 
