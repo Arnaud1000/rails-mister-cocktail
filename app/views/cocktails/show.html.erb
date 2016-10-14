@@ -1,7 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <div class="text-center">
-<div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
+<% if @cocktail.photo.url.nil? %>
+<% image_path = "http://lorempixel.com/600/400/nigthlife" %>
+<% else %>
+<% image_path = cl_image_path(@cocktail.photo, height: 30, width: 40, crop: :fit)  %>
+<% end %>
+<div class="card" style="background-image:url('<%= image_path %>');">
   <div class="card-category">Cocktails</div>
   <div class="card-description">
     <h2><%= @cocktail.name %></h2>

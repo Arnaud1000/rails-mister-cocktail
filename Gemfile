@@ -34,6 +34,9 @@ gem 'autoprefixer-rails'
 # gem 'capistrano-rails', group: :development
 ruby '2.3.1'
 gem 'figaro'
+gem 'cloudinary', '1.1.0'
+gem 'carrierwave'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

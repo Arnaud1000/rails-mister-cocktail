@@ -1,32 +1,45 @@
+
 <p id="notice"><%= notice %></p>
-<div class="class text-center">
-<h1>Tous les cocktails</h1>
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+     <nav id="sidebar">
+         <ul>
+            <li><%= link_to "Tous les cocktails", cocktails_path%></li>
             <% @cocktails.each do |cocktail|%>
-            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
-            <div class="card-category">Cocktails</div>
-            <div class="card-description">
-                <h2><%= cocktail.name %></h2>
-                <ul class="list-unstyled">
-                  <% cocktail.doses.each do |dose| %>
-                    <li>
-                    <%= dose.description %> <%= dose.ingredient.name %>
-                    </li>
-                    </ul>
-
-                  <% end %>
-<%= link_to "Edit",   edit_cocktail_path(cocktail)%>
-<%= link_to "Show",   cocktail_path(cocktail)%>
-
-              <% end %>
-
-            </div>
-        </div>
-    </div>
+            <li><%= link_to "Cocktails + #{ cocktail.name}", cocktail_path(cocktail)%></li>
+            <%end%>
+          <li><%= link_to "Ingredients",ingredients_path%></li>
+         </ul>
+     </nav>
+     <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 10%), url('<%= cl_image_path("cocktails_u9lq4o",
+      width: 400, height: 300, crop: :fill) %>');">
+  <div class="banner-content">
+    <h1>Devenez un maître du cocktail</h1>
+    <p>Grace à des recettes simples...</p>
   </div>
 </div>
+<div class="class text-center">
 
+<h1>Tous les cocktails</h1>
+  <div class="container">
+    <div class="class row">
+
+    </div>
+    <div class="row">
+            <% @cocktails.each do |cocktail|%>
+              <div class="col-xs-12 col-sm-4">
+              <% image_path = cl_image_path(cocktail.photo, height: 100, width: 100, crop: :fit)  %>
+                <div class="card" >
+                  <div class="card-category">Cocktails</div>
+                    <div class="card-description" style="background-image:url('<%= image_path %>');">
+                    <h2><%= cocktail.name %></h2>
+                    <%= link_to "Edit",   edit_cocktail_path(cocktail)%>
+                    <%= link_to "Show",   cocktail_path(cocktail)%>
+                    <%= link_to "Delete",   cocktail_path(cocktail) , :method => :delete %>
+                    </div>
+                </div>
+              </div>
+            <% end %>
+
+
+    </div>
+  </div>
 <%= link_to "New Cocktail", new_cocktail_path(@cocktail)%>
-</div>
